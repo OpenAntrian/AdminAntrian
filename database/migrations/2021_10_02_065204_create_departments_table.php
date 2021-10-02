@@ -18,7 +18,7 @@ class CreateDepartmentsTable extends Migration
             $table->string('name', 200);
             $table->string('queue_code', 4)->unique();
             $table->string('logo', 255)->nullable()->default(null);
-            $table->integer('services_per_day')->default(10);
+            $table->integer('services_per_day')->default(10)->comment('jumlah layanan per hari');
             $table->boolean('is_active')->default(true);
             $table->timestamps();
         });

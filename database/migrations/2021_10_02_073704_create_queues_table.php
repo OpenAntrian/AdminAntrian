@@ -28,7 +28,6 @@ class CreateQueuesTable extends Migration
             $table->time('queue_done_time')->nullable()->default(null);
             $table->smallInteger('queue_status')->default(1)->comment('1 belum dilayani; 2 sudah dilayani; 3 Pending; 4 Batal;');
             $table->boolean('is_active')->default(true);
-            $table->timestamps('time_created');
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('department_id')->references('id')->on('departments')->onDelete('cascade');

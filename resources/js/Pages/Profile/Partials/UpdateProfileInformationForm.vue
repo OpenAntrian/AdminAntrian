@@ -19,7 +19,7 @@
                 <jet-label for="photo" value="Photo" />
 
                 <!-- Current Profile Photo -->
-                <div class="mt-2" v-show="! photoPreview">
+                <div class="mt-2" v-show="!photoPreview">
                     <img :src="user.profile_photo_url" :alt="user.name" class="rounded-full h-20 w-20 object-cover">
                 </div>
 
@@ -113,7 +113,9 @@
                 this.form.post(route('user-profile-information.update'), {
                     errorBag: 'updateProfileInformation',
                     preserveScroll: true,
-                    onSuccess: () => (this.clearPhotoFileInput()),
+                    onSuccess: () => (
+                        this.clearPhotoFileInput()
+                    ),
                 });
             },
 

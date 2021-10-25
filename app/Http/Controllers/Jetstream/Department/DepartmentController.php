@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Jetstream\Department;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Requests\DepartmentRequest;
 use App\Models\Department;
 use Inertia\Inertia;
 
@@ -16,18 +17,14 @@ class DepartmentController extends Controller
      */
     public function index(Request $request)
     {
-        // $departments = Department::paginateData(5);
-        
-        // return Inertia::render('Department/Index', [
-        //     'departments' => $departments
-        // ]);
-
         $limit = (int) $request->get('per_page') > 0 ? (int) $request->get('per_page') : 15;
+        $page = (int) $request->get('page') > 0 ? (int) $request->get('page') : 1;
         $queries = ['search', 'page'];
         return Inertia::render('Department/Index', [
             'departments' => Department::applyFilters($request->only($queries))
                 ->paginateData($limit),
             'filtersDepartments' => $request->all($queries),
+            'start' => $limit * ($page - 1),
         ]);
     }
 
@@ -38,18 +35,20 @@ class DepartmentController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Department/Create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\DepartmentRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(DepartmentRequest $request)
     {
-        //
+        Department::createDepartment($request);
+
+        return redirect()->route('departments.index')->with('success', 'Success');
     }
 
     /**

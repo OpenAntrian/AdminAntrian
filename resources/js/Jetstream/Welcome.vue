@@ -1,12 +1,97 @@
 <template>
-    <div>
+    <div class="flex flex-wrap bg-gray-300 ">
+        <div class="mt-4 w-full lg:w-6/12 xl:w-3/12 px-5 mb-4">
+        <div class="relative flex flex-col min-w-0 break-words bg-white rounded mb-3 xl:mb-0 shadow-lg">
+            <div class="flex-auto p-4">
+            <div class="flex flex-wrap">
+                <div class="relative w-full pr-4 max-w-full flex-grow flex-1">
+                <h5 class="text-blueGray-400 uppercase font-bold text-xs"> Traffic</h5>
+                <span class="font-semibold text-xl text-blueGray-700">334,100</span>
+                </div>
+                <div class="relative w-auto pl-4 flex-initial">
+                <div class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full  bg-red-500">
+                    <font-awesome-icon icon="user-secret" />
+                </div>
+                </div>
+            </div>
+            <p class="text-sm text-blueGray-400 mt-4">
+                <span class="text-emerald-500 mr-2"><i class="fas fa-arrow-up"></i> 2,19% </span>
+                <span class="whitespace-nowrap"> Since last week </span></p>
+            </div>
+        </div>
+        </div>
+
+        <div class=" mt-4 w-full lg:w-6/12 xl:w-3/12 px-5">
+        <div class="relative flex flex-col min-w-0 break-words bg-white rounded mb-4 xl:mb-0 shadow-lg">
+            <div class="flex-auto p-4">
+            <div class="flex flex-wrap">
+                <div class="relative w-full pr-4 max-w-full flex-grow flex-1">
+                <h5 class="text-blueGray-400 uppercase font-bold text-xs">New users</h5>
+                <span class="font-semibold text-xl text-blueGray-700">2,999</span>
+                </div>
+                <div class="relative w-auto pl-4 flex-initial">
+                <div class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full  bg-pink-500">
+                    <i class="fas fa-chart-pie"></i>
+                </div>
+                </div>
+            </div>
+            <p class="text-sm text-blueGray-400 mt-4">
+                <span class="text-red-500 mr-2"><i class="fas fa-arrow-down"></i> 4,01%</span>
+                <span class="whitespace-nowrap"> Since last week </span></p>
+            </div>
+        </div>
+        </div>
+
+        <div class="mt-4 w-full lg:w-6/12 xl:w-3/12 px-5">
+        <div class="relative flex flex-col min-w-0 break-words bg-white rounded mb-6 xl:mb-0 shadow-lg">
+            <div class="flex-auto p-4">
+            <div class="flex flex-wrap">
+                <div class="relative w-full pr-4 max-w-full flex-grow flex-1">
+                <h5 class="text-blueGray-400 uppercase font-bold text-xs">Sales</h5>
+                <span class="font-semibold text-xl text-blueGray-700">901</span>
+                </div>
+                <div class="relative w-auto pl-4 flex-initial">
+                <div class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full  bg-lightBlue-500">
+                    <i class="fas fa-users"></i>
+                </div>
+                </div>
+            </div>
+            <p class="text-sm text-blueGray-400 mt-4">
+                <span class="text-red-500 mr-2"><i class="fas fa-arrow-down"></i> 1,25% </span>
+                <span class="whitespace-nowrap"> Since yesterday </span></p>
+            </div>
+        </div>
+        </div>
+
+        <div class="mt-4 w-full lg:w-6/12 xl:w-3/12 px-5">
+        <div class="relative flex flex-col min-w-0 break-words bg-white rounded mb-6 xl:mb-0 shadow-lg">
+            <div class="flex-auto p-4">
+            <div class="flex flex-wrap">
+                <div class="relative w-full pr-4 max-w-full flex-grow flex-1">
+                <h5 class="text-blueGray-400 uppercase font-bold text-xs">Performance</h5>
+                <span class="font-semibold text-xl text-blueGray-700">51.02% </span>
+                </div>
+                <div class="relative w-auto pl-4 flex-initial">
+                <div class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full  bg-emerald-500">
+                    <i class="fas fa-percent"></i>
+                </div>
+                </div>
+            </div>
+            <p class="text-sm text-blueGray-400 mt-4">
+                <span class="text-emerald-500 mr-2"><i class="fas fa-arrow-up"></i> 12% </span>
+                <span class="whitespace-nowrap"> Since last month </span></p>
+            </div>
+        </div>
+        </div>
+    </div>
+    <!-- <div>
         <div class="p-6 sm:px-20 bg-white border-b border-gray-200">
             <div>
                 <jet-application-logo class="block h-12 w-auto" />
             </div>
 
             <div class="mt-8 text-2xl">
-                Welcome to your Jetstream application!
+                Welcome to your Jetstream application testing from the loop !
             </div>
 
             <div class="mt-6 text-gray-500">
@@ -90,16 +175,25 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 </template>
 
 <script>
     import { defineComponent } from 'vue'
     import JetApplicationLogo from '@/Jetstream/ApplicationLogo.vue'
+    import { library } from "@fortawesome/fontawesome-svg-core";
+    import { faPhone, faUserSecret } from "@fortawesome/free-solid-svg-icons";
+    import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+
+    library.add(faUserSecret)
 
     export default defineComponent({
         components: {
             JetApplicationLogo,
+            FontAwesomeIcon,
+            faPhone,
+            faUserSecret,
         },
+        
     })
 </script>

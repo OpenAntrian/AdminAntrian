@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 use App\Traits\Uuid;
 use App\Traits\HasCan;
 
@@ -30,9 +31,24 @@ class Department extends Model
      */
     protected $hidden = [];
 
+    protected $appends = [
+        'formattedCreatedAt',
+        'formattedUpdatedAt',
+    ];
+
     public function services()
     {
         return $this->hasMany(DepartmentService::class, 'department_id');
+    }
+
+    public function getFormattedCreatedAtAttribute($value)
+    {
+        return Carbon::parse($this->created_at)->format('d M Y H:i:s');
+    }
+    
+    public function getFormattedUpdatedAtAttribute($value)
+    {
+        return Carbon::parse($this->updated_at)->format('d M Y H:i:s');
     }
 
     public function scopeWhereSearch($query, $search)
@@ -72,7 +88,12 @@ class Department extends Model
             'is_active',
         ]);
 
+        $services = $request->only([
+            'services',
+        ]);
+
         $department = self::create($data);
+        $department->createService($services['services']);
 
         return $department;
     }

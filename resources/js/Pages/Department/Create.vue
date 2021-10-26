@@ -18,7 +18,7 @@
 
     <div>
         <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
-            <jet-form-section @submitted="submit">    
+            <jet-form-section @submitted="createDepartment">    
                     <template #title>
                         Create Department
                     </template>
@@ -33,6 +33,8 @@
                             <jet-label for="name" value="Name" />
                             <jet-input id="name" type="text" class="mt-1 block w-full" v-model="form.name" autocomplete="name" />
                             <jet-input-error :message="form.errors.name" class="mt-2" />
+                            <div v-if="errors.name">{{ errors.name }}</div>
+                            <div v-if="success_message">{{ success_message }}</div>
                         </div>
                         
                         <div class="col-span-12 sm:col-span-6">
@@ -59,7 +61,7 @@
                                     <tr v-for="(item, index) in form.services" :key="index">
                                         <td class="py-4 whitespace-nowrap text-sm text-gray-900">
                                             <jet-input type="text" class="mt-1 block w-full" v-model="form.services[index].name"  />
-                                            <!-- <jet-input-error :message="form.errors.services[index].name" class="mt-2" /> -->
+                                            <jet-input-error v-for="(msg, idx) in getErrors('services', index, 'name')" :key="idx" :message="msg" class="mt-2" />
                                         </td>
                                         <td class="py-4 whitespace-nowrap text-sm text-gray-900">
 
@@ -107,6 +109,7 @@
         },
         props: {
             success_message: String,
+            errors: Object,
         },
         data() {
             return {
@@ -120,17 +123,27 @@
             }
         },
         methods: {
-            submit() {
+            createDepartment() {
                 this.form.post(route('departments.store'), {
-                    errorBag: 'submit',
+                    errorBag: 'createDepartment',
                     preserveScroll: true,
-                    onSuccess: () => false,
-                })
+                    onSuccess: page => {
+                        //console.log(page)
+                    },
+                });
             },
             addService () {
                 this.form.services.push({
                     name: null
                 })
+            },
+            getErrors(field, idx, sub) {
+                let search = field + "." + idx + "." + sub
+                const fields = Object.keys(this.form.errors).filter(key => key === search  || key.startsWith(`${search}.`))
+                return fields.reduce((carry, key) => {
+                    carry.push(this.form.errors[key]);
+                    return carry;
+                }, []);
             },
         },
 

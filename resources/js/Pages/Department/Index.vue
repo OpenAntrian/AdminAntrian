@@ -132,7 +132,7 @@
                 this.$inertia.get(route('departments.index', { 'search': this.seachKey } ),{})
             },
             clearSearchBar(){
-                console.log(this.departments)
+                //console.log(this.departments)
                 if(route().params.search){
                     this.$inertia.get(route('departments.index'),{})
                 }else{

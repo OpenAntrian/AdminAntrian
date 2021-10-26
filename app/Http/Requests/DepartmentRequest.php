@@ -57,4 +57,28 @@ class DepartmentRequest extends FormRequest
 
         return $rules;
     }
+
+    /**
+    * Get custom attributes for validator errors.
+    *
+    * @return array
+    */
+    public function attributes()
+    {
+        $attributes = [
+            'name' => 'Name',
+            'services' => 'Service',
+            'services.*' => 'Services',
+            'services.*.name' => 'Service name',
+        ];
+
+        return $attributes;
+    }
+
+    // public function messages()
+    // {
+    //     return [
+    //         'services.*.name' => 'Service :attribute name',
+    //     ];
+    // }
 }

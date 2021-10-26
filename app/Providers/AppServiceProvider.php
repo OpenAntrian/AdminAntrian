@@ -40,6 +40,14 @@ class AppServiceProvider extends ServiceProvider
                 return true;
             }
         });
+
+        Inertia::share([
+            'errors' => function () {
+                return Session::get('errors')
+                    ? Session::get('errors')->getBag('default')->getMessages()
+                    : (object) [];
+            },
+        ]);
     }
 
     private function registerLengthAwarePaginator()

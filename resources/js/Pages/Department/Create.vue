@@ -18,15 +18,7 @@
 
         <div>
             <div class="max-w-full mx-auto py-10 sm:px-6 lg:px-8">
-                <jet-form-section @submitted="createDepartment">    
-                        <template #title>
-                            Create Department
-                        </template>
-
-                        <template #description>
-                            Create new department
-                        </template>
-
+                <jet-form @submitted="createDepartment">
                         <template #form>
                             <!-- Name -->
                             <div class="col-span-12 sm:col-span-6">
@@ -86,15 +78,11 @@
                         </template>
 
                         <template #actions>
-                            <jet-action-message :on="form.recentlySuccessful" class="mr-3">
-                                Saved.
-                            </jet-action-message>
-
                             <jet-button :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                                 Save
                             </jet-button>
                         </template>
-                </jet-form-section>
+                </jet-form>
             </div>
         </div>
     </app-layout>
@@ -103,7 +91,7 @@
     import { defineComponent } from 'vue'
     import { Link } from '@inertiajs/inertia-vue3'
     import AppLayout from '@/Layouts/AppLayout.vue'
-    import JetFormSection from '@/Jetstream/FormSection.vue'
+    import JetForm from '@/Jetstream/Form.vue'
     import JetInput from '@/Jetstream/Input.vue'
     import JetSelect from '@/Jetstream/Select.vue'
     import JetLabel from '@/Jetstream/Label.vue'
@@ -114,7 +102,7 @@
 
     export default defineComponent({
         components: {
-            AppLayout, JetFormSection, JetInput, JetLabel, Link, JetButton, JetInputError, JetSelect, JetDangerButton
+            AppLayout, JetForm, JetInput, JetLabel, Link, JetButton, JetInputError, JetSelect, JetDangerButton
         },
         props: {
             success_message: String,

@@ -16,8 +16,8 @@ class CreateQueuesTable extends Migration
         Schema::create('queues', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->unsignedBigInteger('user_id')->comment('member id');
-            $table->unsignedBigInteger('department_id')->comment('departments id');
-            $table->unsignedBigInteger('service_id')->comment('departments service id');
+            $table->uuid('department_id')->comment('departments id');
+            $table->uuid('service_id')->comment('departments service id');
             $table->unsignedBigInteger('officer_id')->comment('petugas id');
             $table->smallInteger('data_from')->default(0)->comment('0 from office; 1 from website; 2 from mobile android; 3 from mobile ios');
             $table->integer('counter');

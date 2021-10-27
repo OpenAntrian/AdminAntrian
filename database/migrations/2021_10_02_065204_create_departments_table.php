@@ -14,7 +14,7 @@ class CreateDepartmentsTable extends Migration
     public function up()
     {
         Schema::create('departments', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->string('name', 200);
             $table->string('queue_code', 4)->unique();
             $table->string('logo', 255)->nullable()->default(null);

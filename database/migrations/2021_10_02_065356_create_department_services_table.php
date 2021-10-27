@@ -14,12 +14,13 @@ class CreateDepartmentServicesTable extends Migration
     public function up()
     {
         Schema::create('department_services', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('department_id');
+            $table->uuid('id')->primary();
+            $table->uuid('department_id');
             $table->string('name', 200);
             $table->boolean('is_active')->default(true);
             $table->timestamps();
             $table->foreign('department_id')->references('id')->on('departments')->onDelete('cascade');
+            $table->unique(['department_id', 'name'], 'unique_dsdpdin');
         });
     }
 

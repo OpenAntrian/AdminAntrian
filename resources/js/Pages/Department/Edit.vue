@@ -1,5 +1,5 @@
 <template>
-    <app-layout title="Create Department">
+    <app-layout title="Edit Department">
 
     <template #header>
         <div class="grid grid-cols-2 gap-4">
@@ -8,7 +8,7 @@
                     <ol class="flex leading-none text-indigo-600 divide-x divide-indigo-400">
                         <li class="pr-4"><Link :href="route('dashboard')" >Dashboard</Link></li>
                         <li class="px-4"><Link :href="route('departments.index')" >Departments</Link></li>
-                        <li class="px-4 text-gray-700" aria-current="page">Update Department</li>
+                        <li class="px-4 text-gray-700" aria-current="page">Edit Department</li>
                     </ol>
                 </nav>
             </div>
@@ -18,14 +18,7 @@
 
     <div>
         <div class="max-w-full mx-auto py-10 sm:px-6 lg:px-8">
-            <jet-form @submitted="updateDepartment">    
-                    <template #title>
-                        Edit Department
-                    </template>
-
-                    <template #description>
-                        Edit department
-                    </template>
+            <jet-form @submitted="updateDepartment">
 
                     <template #form>
                         <!-- Name -->

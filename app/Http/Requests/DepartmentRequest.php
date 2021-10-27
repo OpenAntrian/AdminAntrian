@@ -51,8 +51,11 @@ class DepartmentRequest extends FormRequest
             ],
             'services.*.name' => [
                 'required',
-                'unique:department_services,department_id,name',
                 'max:255'
+            ],
+            'services.*.is_active' => [
+                'required',
+                'boolean'
             ],
         ];
 
@@ -78,6 +81,7 @@ class DepartmentRequest extends FormRequest
             'services' => 'Service',
             'services.*' => 'Services',
             'services.*.name' => 'Service name',
+            'services.*.is_active' => 'IS Active',
         ];
 
         return $attributes;

@@ -1849,6 +1849,9 @@ select {
 .align-baseline {
 	vertical-align: baseline;
 }
+.align-top {
+	vertical-align: top;
+}
 .align-middle {
 	vertical-align: middle;
 }

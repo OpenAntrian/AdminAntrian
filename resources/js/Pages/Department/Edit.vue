@@ -8,7 +8,7 @@
                     <ol class="flex leading-none text-indigo-600 divide-x divide-indigo-400">
                         <li class="pr-4"><Link :href="route('dashboard')" >Dashboard</Link></li>
                         <li class="px-4"><Link :href="route('departments.index')" >Departments</Link></li>
-                        <li class="px-4 text-gray-700" aria-current="page">Create Department</li>
+                        <li class="px-4 text-gray-700" aria-current="page">Update Department</li>
                     </ol>
                 </nav>
             </div>
@@ -17,7 +17,7 @@
     </template>
 
     <div>
-        <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
+        <div class="max-w-full mx-auto py-10 sm:px-6 lg:px-8">
             <jet-form-section @submitted="updateDepartment">    
                     <template #title>
                         Edit Department
@@ -55,20 +55,27 @@
                                     <tr>
                                         <th scope="col" class="px-6 py-3 bg-red-50 text-left text-xs font-medium text-red-500 uppercase tracking-wider">Service Name</th>
                                         <th scope="col" class="px-6 py-3 bg-red-50 text-left text-xs font-medium text-red-500 uppercase tracking-wider">Active</th>
+                                        <th scope="col" class="px-6 py-3 bg-red-50 text-left text-xs font-medium text-red-500 uppercase tracking-wider">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody class="bg-white divide-y divide-gray-200">
                                     <tr v-for="(item, index) in form.services" :key="index">
-                                        <td class="py-4 whitespace-nowrap text-sm text-gray-900">
+                                        <td class="py-4 whitespace-nowrap text-sm text-gray-900 align-top">
                                             <jet-input type="text" class="mt-1 block w-full" v-model="form.services[index].name"  />
                                             <jet-input-error v-for="(msg, idx) in getErrors('services', index, 'name')" :key="idx" :message="msg" class="mt-2" />
                                         </td>
-                                        <td class="py-4 whitespace-nowrap text-sm text-gray-900">
+                                        <td class="py-4 whitespace-nowrap text-sm text-gray-900 align-top">
                                             <jet-select type="text" class="mt-1 block w-full" v-model="form.services[index].is_active" :options="is_active" />
+                                            <jet-input-error v-for="(msg, idx) in getErrors('services', index, 'is_active')" :key="idx" :message="msg" class="mt-2" />
+                                        </td>
+                                        <td class="py-4 whitespace-nowrap text-sm text-gray-900 align-midle align-center" width="1%">
+                                            <template v-if="item.id == null">
+                                            <jet-danger-button type="button" @click="deleteService(index)"><i class="fas fa-trash-alt"></i></jet-danger-button>
+                                            </template>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td class="py-4 whitespace-nowrap text-sm text-gray-900" colspan="2">
+                                        <td class="py-4 whitespace-nowrap text-sm text-gray-900" colspan="3">
                                             <jet-button class="bg-red-500 ml-4 hover:bg-red-400" type="button" @click="addService">Add Service</jet-button>
                                         </td>
                                     </tr>
@@ -100,13 +107,14 @@
     import JetInput from '@/Jetstream/Input.vue'
     import JetLabel from '@/Jetstream/Label.vue'
     import JetButton from '@/Jetstream/Button.vue'
+    import JetDangerButton from '@/Jetstream/DangerButton.vue'
     import JetInputError from '@/Jetstream/InputError.vue'
     import JetSelect from '@/Jetstream/Select.vue'
     // import JetValidationErrors from '@/Jetstream/ValidationErrors.vue'
 
     export default defineComponent({
         components: {
-            AppLayout, JetFormSection, JetInput, JetLabel, Link, JetButton, JetInputError, JetSelect
+            AppLayout, JetFormSection, JetInput, JetLabel, Link, JetButton, JetInputError, JetSelect, JetDangerButton
         },
         props: ['department', 'success_message', 'errors'],
 
@@ -137,7 +145,11 @@
                 this.form.services.push({
                     id: null,
                     name: null,
+                    is_active: 1,
                 })
+            },
+            deleteService (index) {
+                this.form.services.splice(index, 1);
             },
             getErrors(field, idx, sub) {
                 let search = field + "." + idx + "." + sub

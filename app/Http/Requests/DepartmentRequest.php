@@ -2,8 +2,8 @@
 
 namespace App\Http\Requests;
 
-
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class DepartmentRequest extends FormRequest
 {
@@ -51,9 +51,17 @@ class DepartmentRequest extends FormRequest
             ],
             'services.*.name' => [
                 'required',
+                'unique:department_services,department_id,name',
                 'max:255'
             ],
         ];
+
+        if ($this->getMethod() == 'PUT') {
+            $rules['queue_code'] = [
+                'required',
+                Rule::unique('departments')->ignore($this->department),
+            ];
+        }
 
         return $rules;
     }

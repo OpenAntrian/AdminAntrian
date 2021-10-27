@@ -1,95 +1,95 @@
 <template>
     <app-layout title="Create Department">
 
-    <template #header>
-        <div class="grid grid-cols-2 gap-4">
-            <div>
-                <nav aria-label="breadcrumb">
-                    <ol class="flex leading-none text-indigo-600 divide-x divide-indigo-400">
-                        <li class="pr-4"><Link :href="route('dashboard')" >Dashboard</Link></li>
-                        <li class="px-4"><Link :href="route('departments.index')" >Departments</Link></li>
-                        <li class="px-4 text-gray-700" aria-current="page">Create Department</li>
-                    </ol>
-                </nav>
+        <template #header>
+            <div class="grid grid-cols-2 gap-4">
+                <div>
+                    <nav aria-label="breadcrumb">
+                        <ol class="flex leading-none text-indigo-600 divide-x divide-indigo-400">
+                            <li class="pr-4"><Link :href="route('dashboard')" >Dashboard</Link></li>
+                            <li class="px-4"><Link :href="route('departments.index')" >Departments</Link></li>
+                            <li class="px-4 text-gray-700" aria-current="page">Create Department</li>
+                        </ol>
+                    </nav>
+                </div>
+                <div></div>
             </div>
-            <div></div>
+        </template>
+
+        <div>
+            <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
+                <jet-form-section @submitted="createDepartment">    
+                        <template #title>
+                            Create Department
+                        </template>
+
+                        <template #description>
+                            Create new department
+                        </template>
+
+                        <template #form>
+                            <!-- Name -->
+                            <div class="col-span-12 sm:col-span-6">
+                                <jet-label for="name" value="Name" />
+                                <jet-input id="name" type="text" class="mt-1 block w-full" v-model="form.name" autocomplete="name" />
+                                <jet-input-error :message="form.errors.name" class="mt-2" />
+                                <div v-if="errors.name">{{ errors.name }}</div>
+                                <div v-if="success_message">{{ success_message }}</div>
+                            </div>
+                            
+                            <div class="col-span-12 sm:col-span-6">
+                                <jet-label for="queue_code" value="Queue code" />
+                                <jet-input id="queue_code" type="text" class="mt-1 block w-full" v-model="form.queue_code" autocomplete="queue_code" />
+                                <jet-input-error :message="form.errors.queue_code" class="mt-2" />
+                            </div>
+
+                            <div class="col-span-12 sm:col-span-6">
+                                <jet-label for="services_per_day" value="Queue code" />
+                                <jet-input id="services_per_day" type="number" class="mt-1 block w-full" v-model="form.services_per_day"  />
+                                <jet-input-error :message="form.errors.services_per_day" class="mt-2" />
+                            </div>
+                            
+                            <div class="col-span-12 sm:col-span-6">
+                                <table class="min-w-full divide-y divide-red-200 w-full">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col" class="px-6 py-3 bg-red-50 text-left text-xs font-medium text-red-500 uppercase tracking-wider">Service Name</th>
+                                            <th scope="col" class="px-6 py-3 bg-red-50 text-left text-xs font-medium text-red-500 uppercase tracking-wider">Active</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="bg-white divide-y divide-gray-200">
+                                        <tr v-for="(item, index) in form.services" :key="index">
+                                            <td class="py-4 whitespace-nowrap text-sm text-gray-900">
+                                                <jet-input type="text" class="mt-1 block w-full" v-model="form.services[index].name"  />
+                                                <jet-input-error v-for="(msg, idx) in getErrors('services', index, 'name')" :key="idx" :message="msg" class="mt-2" />
+                                            </td>
+                                            <td class="py-4 whitespace-nowrap text-sm text-gray-900">
+                                                <jet-select type="text" class="mt-1 block w-full" v-model="form.services[index].is_active" :options="is_active" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="py-4 whitespace-nowrap text-sm text-gray-900" colspan="2">
+                                                <jet-button class="bg-red-500 ml-4 hover:bg-red-400" type="button" @click="addService">Add Service</jet-button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </template>
+
+                        <template #actions>
+                            <jet-action-message :on="form.recentlySuccessful" class="mr-3">
+                                Saved.
+                            </jet-action-message>
+
+                            <jet-button :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                                Save
+                            </jet-button>
+                        </template>
+                </jet-form-section>
+            </div>
         </div>
-    </template>
-
-    <div>
-        <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
-            <jet-form-section @submitted="createDepartment">    
-                    <template #title>
-                        Create Department
-                    </template>
-
-                    <template #description>
-                        Create new department
-                    </template>
-
-                    <template #form>
-                        <!-- Name -->
-                        <div class="col-span-12 sm:col-span-6">
-                            <jet-label for="name" value="Name" />
-                            <jet-input id="name" type="text" class="mt-1 block w-full" v-model="form.name" autocomplete="name" />
-                            <jet-input-error :message="form.errors.name" class="mt-2" />
-                            <div v-if="errors.name">{{ errors.name }}</div>
-                            <div v-if="success_message">{{ success_message }}</div>
-                        </div>
-                        
-                        <div class="col-span-12 sm:col-span-6">
-                            <jet-label for="queue_code" value="Queue code" />
-                            <jet-input id="queue_code" type="text" class="mt-1 block w-full" v-model="form.queue_code" autocomplete="queue_code" />
-                            <jet-input-error :message="form.errors.queue_code" class="mt-2" />
-                        </div>
-
-                        <div class="col-span-12 sm:col-span-6">
-                            <jet-label for="services_per_day" value="Queue code" />
-                            <jet-input id="services_per_day" type="number" class="mt-1 block w-full" v-model="form.services_per_day"  />
-                            <jet-input-error :message="form.errors.services_per_day" class="mt-2" />
-                        </div>
-                        
-                        <div class="col-span-12 sm:col-span-6">
-                            <table class="min-w-full divide-y divide-red-200 w-full">
-                                <thead>
-                                    <tr>
-                                        <th scope="col" class="px-6 py-3 bg-red-50 text-left text-xs font-medium text-red-500 uppercase tracking-wider">Service Name</th>
-                                        <th scope="col" class="px-6 py-3 bg-red-50 text-left text-xs font-medium text-red-500 uppercase tracking-wider"></th>
-                                    </tr>
-                                </thead>
-                                <tbody class="bg-white divide-y divide-gray-200">
-                                    <tr v-for="(item, index) in form.services" :key="index">
-                                        <td class="py-4 whitespace-nowrap text-sm text-gray-900">
-                                            <jet-input type="text" class="mt-1 block w-full" v-model="form.services[index].name"  />
-                                            <jet-input-error v-for="(msg, idx) in getErrors('services', index, 'name')" :key="idx" :message="msg" class="mt-2" />
-                                        </td>
-                                        <td class="py-4 whitespace-nowrap text-sm text-gray-900">
-
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="py-4 whitespace-nowrap text-sm text-gray-900" colspan="2">
-                                            <jet-button class="bg-red-500 ml-4 hover:bg-red-400" type="button" @click="addService">Add Service</jet-button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-
-                    </template>
-
-                    <template #actions>
-                        <jet-action-message :on="form.recentlySuccessful" class="mr-3">
-                            Saved.
-                        </jet-action-message>
-
-                        <jet-button :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                            Save
-                        </jet-button>
-                    </template>
-            </jet-form-section>
-        </div>
-    </div>
     </app-layout>
 </template>
 <script>
@@ -98,6 +98,7 @@
     import AppLayout from '@/Layouts/AppLayout.vue'
     import JetFormSection from '@/Jetstream/FormSection.vue'
     import JetInput from '@/Jetstream/Input.vue'
+    import JetSelect from '@/Jetstream/Select.vue'
     import JetLabel from '@/Jetstream/Label.vue'
     import JetButton from '@/Jetstream/Button.vue'
     import JetInputError from '@/Jetstream/InputError.vue'
@@ -105,7 +106,7 @@
 
     export default defineComponent({
         components: {
-            AppLayout, JetFormSection, JetInput, JetLabel, Link, JetButton, JetInputError
+            AppLayout, JetFormSection, JetInput, JetLabel, Link, JetButton, JetInputError, JetSelect
         },
         props: {
             success_message: String,
@@ -113,12 +114,13 @@
         },
         data() {
             return {
+                is_active: [{name: 'Active', value: 1}, {name: 'InActive', value: 0}],
                 form: this.$inertia.form({
                     _method: "POST",
                     name: null,
                     queue_code: null,
                     services_per_day:null,
-                    services: [{ name: null }],
+                    services: [{ name: null, is_active: 1 }],
                 })
             }
         },

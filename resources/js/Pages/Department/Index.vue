@@ -66,7 +66,7 @@
                                             {{ item.formattedUpdatedAt }}</td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                             <Link :href="route('departments.edit', item.id)" type="button"><jet-button class="bg-coolGray-500 ml-4 hover:bg-coolGray-400">Edit</jet-button></Link>
-                                            <jet-button class="bg-red-500 ml-4 hover:bg-red-400" @click="confirmUserDeletion(item.id)">Delete </jet-button></td>
+                                            <jet-danger-button @click="confirmUserDeletion(item.id)">Delete </jet-danger-button></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -105,10 +105,6 @@
           JetSecondaryButton, 
           ActionMessage,
         },
-
-        // props: [
-        //   'departments', 'filtersDepartments'
-        // ],
 
         props: [
           'departments',

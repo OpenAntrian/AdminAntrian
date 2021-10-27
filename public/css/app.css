@@ -1108,17 +1108,6 @@ select {
 .prose > :last-child {
 	margin-bottom: 0;
 }
-.sr-only {
-	position: absolute;
-	width: 1px;
-	height: 1px;
-	padding: 0;
-	margin: -1px;
-	overflow: hidden;
-	clip: rect(0, 0, 0, 0);
-	white-space: nowrap;
-	border-width: 0;
-}
 .fixed {
 	position: fixed;
 }
@@ -1170,17 +1159,11 @@ select {
 .col-span-12 {
 	grid-column: span 12 / span 12;
 }
-.float-right {
-	float: right;
-}
 .m-0 {
 	margin: 0px;
 }
 .m-8 {
 	margin: 2rem;
-}
-.m-5 {
-	margin: 1.25rem;
 }
 .mx-auto {
 	margin-left: auto;
@@ -2176,14 +2159,6 @@ select {
 .hover\:text-gray-900:hover {
 	--tw-text-opacity: 1;
 	color: rgba(17, 24, 39, var(--tw-text-opacity));
-}
-.hover\:text-indigo-900:hover {
-	--tw-text-opacity: 1;
-	color: rgba(49, 46, 129, var(--tw-text-opacity));
-}
-.hover\:text-red-900:hover {
-	--tw-text-opacity: 1;
-	color: rgba(127, 29, 29, var(--tw-text-opacity));
 }
 .focus\:z-10:focus {
 	z-index: 10;

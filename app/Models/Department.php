@@ -98,16 +98,39 @@ class Department extends Model
         return $department;
     }
 
+    public function updateDepartment($request) {
+        $data = $request->only([
+            'name',
+            'queue_code',
+            'logo',
+            'services_per_day',
+            'is_active',
+        ]);
+
+        $services = $request->only([
+            'services',
+        ]);
+
+        $department = $this->update($data);
+        $this->createService($services['services']);
+        return $department;
+    }
+
     public function createService($services) {
         foreach ($services as $key => $value) {
-            $this->services()->updateOrCreate(
-                [
-                    'name' => $value['name'],
-                ],
-                [
-                    'name' => $value['name'],
-                ]
-            );
+            try {
+                $this->services()->updateOrCreate(
+                    [
+                        'id' => $value['id'] ?? null,
+                    ],
+                    [
+                        'name' => $value['name'],
+                        'is_active' => $value['is_active'],
+                    ]
+                );
+            } catch (\Exception $error) {
+                return true;
+            }
         }
-    } 
+    }
 }

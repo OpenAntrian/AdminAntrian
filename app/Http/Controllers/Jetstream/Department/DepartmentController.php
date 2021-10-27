@@ -68,9 +68,15 @@ class DepartmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Department $department)
     {
-        //
+        $department->load([
+            'services',
+        ]);
+
+        return Inertia::render('Department/Edit', [
+            'department' => $department
+        ]);
     }
 
     /**
@@ -80,9 +86,11 @@ class DepartmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(DepartmentRequest $request, Department $department)
     {
-        //
+        $department->updateDepartment($request);
+
+        return redirect()->route('departments.index')->with('success', 'Success');
     }
 
     /**

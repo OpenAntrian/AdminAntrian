@@ -125,7 +125,7 @@ class Department extends Model
                     ],
                     [
                         'name' => $value['name'],
-                        'is_active' => $value['is_active'],
+                        'is_active' => $value['is_active'] ?? true,
                     ]
                 );
             } catch (\Exception $error) {

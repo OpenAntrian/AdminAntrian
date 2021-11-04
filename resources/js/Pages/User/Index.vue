@@ -1,17 +1,17 @@
 <template>
-    <app-layout title="Department">
+    <app-layout title="Member">
         <template #header>
             <div class="grid grid-cols-2 gap-4">
             <div>
                 <nav aria-label="breadcrumb">
                     <ol class="flex leading-none text-indigo-600 divide-x divide-indigo-400">
                         <li class="pr-4"><Link :href="route('dashboard')" >Dashboard</Link></li>
-                        <li class="px-4 text-gray-700" aria-current="page">Departments</li>
+                        <li class="px-4 text-gray-700" aria-current="page">Member</li>
                     </ol>
                 </nav>
             </div>
             <div class="text-right">
-              <Link :href="route('departments.create')"><jet-button class="bg-blue-500 hover:bg-indigo-400 text-white font-bold py-2 px-4 rounded">Create department</jet-button></Link>
+              <Link :href="route('users.create')"><jet-button class="bg-blue-500 hover:bg-indigo-400 text-white font-bold py-2 px-4 rounded">Create member</jet-button></Link>
             </div>
         </div>
         </template>
@@ -31,7 +31,7 @@
                                         </button>
                                     </div>
                                     <div class="absolute top-2 right-3"> 
-                                        <Link :href="route('departments.index', { 'search': seachKey } )">
+                                        <Link :href="route('users.index', { 'search': seachKey } )">
                                           <i class="fas fa-search text-gray-400 z-20 hover:text-gray-500"></i>
                                         </Link> 
                                     </div>
@@ -43,34 +43,31 @@
                                 <tr>
                                     <th scope="col" width="50" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
                                     <th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
-                                    <th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Queue code</th>
-                                    <th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Services per day</th>
+                                    <th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
                                     <th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Created At</th>
                                     <th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Updated At</th>
                                     <th scope="col" width="50" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Action</th>
                                 </tr>
                                 </thead>
                                 <tbody class="bg-white divide-y divide-gray-200">
-                                    <tr v-for="(item, index) in departments.data" :key="item.id">
+                                    <tr v-for="(item, index) in users.data" :key="item.id">
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                                             {{ (index + 1) + (start)}}</td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                                             {{ item.name }}</td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                                            {{ item.queue_code }}</td>
-                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                                            {{ item.services_per_day }}</td>
+                                            {{ item.email }}</td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                                             {{ item.formattedCreatedAt }}</td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                                             {{ item.formattedUpdatedAt }}</td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                            <Link :href="route('departments.edit', item.id)" type="button"><jet-button class="bg-coolGray-500 ml-4 hover:bg-coolGray-400">Edit</jet-button></Link>
+                                            <Link :href="route('users.edit', item.id)" type="button"><jet-button class="bg-coolGray-500 ml-4 hover:bg-coolGray-400">Edit</jet-button></Link>
                                             &nbsp;<jet-danger-button @click="confirmUserDeletion(item.id)">Delete </jet-danger-button></td>
                                     </tr>
                                 </tbody>
                             </table>
-                            <pagination :links="departments.links"></pagination> 
+                            <pagination :links="users.links"></pagination> 
                         </div>
                     </div>
                 </div>
@@ -107,8 +104,8 @@
         },
 
         props: [
-          'departments',
-          'filtersDepartments',
+          'users',
+          'filtersUsers',
           'start',
         ],
 
@@ -125,12 +122,12 @@
         },
         methods:{
             quickSearch(){                
-                this.$inertia.get(route('departments.index', { 'search': this.seachKey } ),{})
+                this.$inertia.get(route('users.index', { 'search': this.seachKey } ),{})
             },
             clearSearchBar(){
                 //console.log(this.departments)
                 if(route().params.search){
-                    this.$inertia.get(route('departments.index'),{})
+                    this.$inertia.get(route('users.index'),{})
                 }else{
                     this.seachKey = null
                 }
@@ -141,7 +138,7 @@
             },
             deleteitem() {
                 // if (!confirm('Are you sure want to remove?')) return;
-                // this.form.delete(route('departments.destroy', this.itemId), {
+                // this.form.delete(route('users.destroy', this.itemId), {
                 //     onSuccess: () => this.closeModal(),
                 // })
             },

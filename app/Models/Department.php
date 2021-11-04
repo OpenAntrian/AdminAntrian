@@ -124,7 +124,7 @@ class Department extends Model
                         'id' => $value['id'] ?? null,
                     ],
                     [
-                        'name' => $value['name'],
+                        'name' => $value['name'] ?? null,
                         'is_active' => $value['is_active'] ?? true,
                     ]
                 );

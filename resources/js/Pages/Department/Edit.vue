@@ -37,7 +37,7 @@
                         </div>
 
                         <div class="col-span-12 sm:col-span-6">
-                            <jet-label for="services_per_day" value="Queue code" />
+                            <jet-label for="services_per_day" value="Services per day" />
                             <jet-input id="services_per_day" type="number" class="mt-1 block w-full" v-model="form.services_per_day"  />
                             <jet-input-error :message="form.errors.services_per_day" class="mt-2" />
                         </div>

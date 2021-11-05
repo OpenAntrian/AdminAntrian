@@ -61,6 +61,7 @@ class User extends Authenticatable
         'profile_photo_url',
         'formattedCreatedAt',
         'formattedUpdatedAt',
+        'permissions',
     ];
 
     public function hasRole($role)
@@ -78,9 +79,31 @@ class User extends Authenticatable
         return Carbon::parse($this->updated_at)->format('d M Y H:i:s');
     }
 
+    public function getPermissionsAttribute()
+    {
+        $arrPermission = [
+            'admins' => [
+                'view' => $this->cannot('index', User::class),
+            ],
+        ];
+
+        if($this->role === 'super-admin') {
+            $arrPermission['admins'] = [
+                'view' => $this->can('index', User::class),
+            ];
+        }
+
+        return $arrPermission;
+    }
+
     public function scopeWhereRole($query, $search)
     {
         $query->where('users.role', $search);
+    }
+
+    public function scopeWhereRoleIn($query, $search = [])
+    {
+        $query->whereIn('users.role', $search);
     }
 
     public function scopeWhereSearch($query, $search)

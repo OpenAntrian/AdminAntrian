@@ -6,6 +6,7 @@ use Inertia\Inertia;
 
 use App\Http\Controllers\Jetstream\Department\DepartmentController;
 use App\Http\Controllers\Jetstream\User\UserController;
+use App\Http\Controllers\Jetstream\User\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,7 +34,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->name('dashboard');
 
-Route::middleware(['auth:sanctum', 'is_admin', 'verified'])->group(function () {
+Route::middleware(['auth:sanctum', 'is-admin', 'verified'])->group(function () {
 
     Route::get('/dashboard', function () {
         return Inertia::render('Dashboard');
@@ -41,4 +42,8 @@ Route::middleware(['auth:sanctum', 'is_admin', 'verified'])->group(function () {
 
     Route::resource('departments', DepartmentController::class);
     Route::resource('users', UserController::class);
+});
+
+Route::middleware(['auth:sanctum', 'is-super-admin', 'verified'])->group(function () {
+    Route::resource('admins', AdminController::class);
 });

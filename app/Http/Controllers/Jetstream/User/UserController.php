@@ -47,7 +47,7 @@ class UserController extends Controller
      */
     public function store(UserRequest $request)
     {
-        User::createUser($request);
+        User::createUser($request->validated());
 
         return redirect()->route('users.index')->with('success', 'Success');
     }
@@ -71,9 +71,13 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        return Inertia::render('User/Edit', [
-            'user' => $user
-        ]);
+        if($user->role == 'user') { 
+            return Inertia::render('User/Edit', [
+                'user' => $user
+            ]);
+        } else {
+            abort(404);
+        }
     }
 
     /**
@@ -85,9 +89,12 @@ class UserController extends Controller
      */
     public function update(UserRequest $request, User $user)
     {
-        $user->updateUser($request);
-
-        return redirect()->route('users.index')->with('success', 'Success');
+        if($user->role == 'user') { 
+            $user->updateUser($request->validated());
+            return redirect()->route('users.index')->with('success', 'Success');
+        } else {
+            abort(404);
+        }
     }
 
     /**

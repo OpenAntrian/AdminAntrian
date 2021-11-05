@@ -29,6 +29,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
     ];
 
     /**
@@ -132,11 +133,14 @@ class User extends Authenticatable
     }
 
     public static function createUser($request) {
-        $data = $request->only([
-            'name',
-            'email',
-            'password',
-        ]);
+        // $data = $request->only([
+        //     'name',
+        //     'email',
+        //     'password',
+        //     'role',
+        // ]);
+        
+        $data = $request;
 
         $data['password'] = Hash::make($data['password']);
 
@@ -146,12 +150,14 @@ class User extends Authenticatable
     }
 
     public function updateUser($request) {
-        $data = $request->only([
-            'name',
-            'email',
-            'password',
-        ]);
-
+        // $data = $request->only([
+        //     'name',
+        //     'email',
+        //     'password',
+        //     'role',
+        // ]);
+        $data = $request;
+        
         if($data['password']) {
             $data['password'] = Hash::make($data['password']);
         } else {

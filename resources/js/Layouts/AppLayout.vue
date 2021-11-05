@@ -2,8 +2,6 @@
     <div>
         <Head :title="title" />
 
-        <jet-banner />
-
         <div class="min-h-screen bg-gray-100">
             <nav class="bg-white border-b border-gray-100">
                 <!-- Primary Navigation Menu -->
@@ -242,6 +240,7 @@
 
             <!-- Page Content -->
             <main>
+                <!-- <jet-banner /> -->
                 <slot></slot>
             </main>
         </div>
@@ -257,6 +256,7 @@
     import JetNavLink from '@/Jetstream/NavLink.vue'
     import JetResponsiveNavLink from '@/Jetstream/ResponsiveNavLink.vue'
     import { Head, Link } from '@inertiajs/inertia-vue3';
+    import { notify } from "notiwind";
 
     export default defineComponent({
         props: {
@@ -292,6 +292,21 @@
             logout() {
                 this.$inertia.post(route('logout'));
             },
-        }
+        },
+        computed: {
+            getMessage() {
+                return this.$page.props.success?.message || ''
+            },
+        },
+        beforeMount(){
+            if(this.getMessage) {
+                Toast.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    toast: true,
+                    title: this.getMessage
+                });
+            }
+        },
     })
 </script>

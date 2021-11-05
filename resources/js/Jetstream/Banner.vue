@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="max-w-full mx-auto sm:px-6 lg:px-8">
         <div :class="{ 'bg-indigo-500': style == 'success', 'bg-red-700': style == 'danger' }" v-if="show && message">
             <div class="max-w-screen-xl mx-auto py-2 px-3 sm:px-6 lg:px-8">
                 <div class="flex items-center justify-between flex-wrap">
@@ -49,11 +49,13 @@
 
         computed: {
             style() {
-                return this.$page.props.jetstream.flash?.bannerStyle || 'success'
+                //return this.$page.props.jetstream.flash?.bannerStyle || 'success'
+                return this.$page.props.success?.bannerStyle || 'success'
             },
 
             message() {
-                return this.$page.props.jetstream.flash?.banner || ''
+                //return this.$page.props.jetstream.flash?.banner || ''
+                return this.$page.props.success?.message || ''
             },
         }
     })

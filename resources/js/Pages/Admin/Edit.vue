@@ -1,5 +1,5 @@
 <template>
-    <app-layout title="Edit User">
+    <app-layout title="Edit Admin">
 
     <template #header>
         <div class="grid grid-cols-2 gap-4">
@@ -7,8 +7,8 @@
                 <nav aria-label="breadcrumb">
                     <ol class="flex leading-none text-indigo-600 divide-x divide-indigo-400">
                         <li class="pr-4"><Link :href="route('dashboard')" >Dashboard</Link></li>
-                        <li class="px-4"><Link :href="route('users.index')" >Member</Link></li>
-                        <li class="px-4 text-gray-700" aria-current="page">Edit Member</li>
+                        <li class="px-4"><Link :href="route('admins.index')" >Admins</Link></li>
+                        <li class="px-4 text-gray-700" aria-current="page">Edit Admin</li>
                     </ol>
                 </nav>
             </div>
@@ -18,7 +18,7 @@
 
     <div>
         <div class="max-w-full mx-auto py-10 sm:px-6 lg:px-8">
-            <jet-form @submitted="updateUser">
+            <jet-form @submitted="updateAdmin">
                     <template #form>
                         <!-- Name -->
                         <div class="col-span-12 sm:col-span-6">
@@ -33,6 +33,12 @@
                             <jet-label for="email" value="Email" />
                             <jet-input id="email" type="email" class="mt-1 block w-full" v-model="form.email" />
                             <jet-input-error :message="form.errors.email" class="mt-2" />
+                        </div>
+
+                        <div class="col-span-12 sm:col-span-6">
+                            <jet-label for="role" value="Role" />
+                            <jet-select type="text" class="mt-1 block w-full" v-model="form.role" :options="role" />
+                            <jet-input-error :message="form.errors.role" class="mt-2" />
                         </div>
                         
                         <div class="col-span-12 sm:col-span-6">
@@ -69,24 +75,25 @@
         components: {
             AppLayout, JetForm, JetInput, JetLabel, Link, JetButton, JetInputError, JetSelect, JetDangerButton
         },
-        props: ['user', 'success_message', 'errors'],
+        props: ['admin', 'success_message', 'errors'],
 
         data() {
             return {
-                itemId :  this.user.id,
-                is_active: [{name: 'Active', value: 1}, {name: 'InActive', value: 0}],
+                itemId :  this.admin.id,
+                role: [{name: '==Select==', value: ''}, {name: 'Admin', value: 'admin'}, {name: 'Super Admin', value: 'super-admin'}],
                 form: this.$inertia.form({
                     _method: "PUT",
-                    name: this.user.name,
-                    email: this.user.email,
+                    name: this.admin.name,
+                    email: this.admin.email,
                     password: null,
+                    role: this.admin.role,
                 })
             }
         },
         methods: {
-            updateUser() {
-                this.form.post(route('users.update', this.itemId), {
-                    errorBag: 'updateUser',
+            updateAdmin() {
+                this.form.post(route('admins.update', this.itemId), {
+                    errorBag: 'updateAdmin',
                     preserveScroll: true,
                     onSuccess: page => {
                         //console.log(page)

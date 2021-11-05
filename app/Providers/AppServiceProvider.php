@@ -48,6 +48,12 @@ class AppServiceProvider extends ServiceProvider
                     : (object) [];
             },
         ]);
+
+        Inertia::share('success', function () {
+            return [
+                'message' => Session::get('success')
+            ];
+        });
     }
 
     private function registerLengthAwarePaginator()

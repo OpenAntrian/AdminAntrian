@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class UserRequest extends FormRequest
+class AdminRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -38,12 +38,16 @@ class UserRequest extends FormRequest
                 'required',
                 'min:6',
             ],
+            'role' => [
+                'required',
+                'in:admin,super-admin',
+            ],
         ];
 
         if ($this->getMethod() == 'PUT') {
             $rules['email'] = [
                 'required',
-                Rule::unique('users')->ignore($this->user),
+                Rule::unique('users')->ignore($this->admin),
             ];
 
             $rules['password'] = [

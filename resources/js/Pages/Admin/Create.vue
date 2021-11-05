@@ -7,8 +7,8 @@
                     <nav aria-label="breadcrumb">
                         <ol class="flex leading-none text-indigo-600 divide-x divide-indigo-400">
                             <li class="pr-4"><Link :href="route('dashboard')" >Dashboard</Link></li>
-                            <li class="px-4"><Link :href="route('users.index')" >Member</Link></li>
-                            <li class="px-4 text-gray-700" aria-current="page">Create Member</li>
+                            <li class="px-4"><Link :href="route('admins.index')" >Admins</Link></li>
+                            <li class="px-4 text-gray-700" aria-current="page">Create Admin</li>
                         </ol>
                     </nav>
                 </div>
@@ -33,6 +33,12 @@
                                 <jet-label for="email" value="Email" />
                                 <jet-input id="email" type="email" class="mt-1 block w-full" v-model="form.email" />
                                 <jet-input-error :message="form.errors.email" class="mt-2" />
+                            </div>
+                            
+                            <div class="col-span-12 sm:col-span-6">
+                                <jet-label for="role" value="Role" />
+                                <jet-select type="text" class="mt-1 block w-full" v-model="form.role" :options="role" />
+                                <jet-input-error :message="form.errors.role" class="mt-2" />
                             </div>
                             
                             <div class="col-span-12 sm:col-span-6">
@@ -75,18 +81,19 @@
         },
         data() {
             return {
-                is_active: [{name: 'Active', value: 1}, {name: 'InActive', value: 0}],
+                role: [{name: '==Select==', value: ''}, {name: 'Admin', value: 'admin'}, {name: 'Super Admin', value: 'super-admin'}],
                 form: this.$inertia.form({
                     _method: "POST",
                     name: null,
                     email: null,
                     password: null,
+                    role: 'admin',
                 })
             }
         },
         methods: {
             createUser() {
-                this.form.post(route('users.store'), {
+                this.form.post(route('admins.store'), {
                     errorBag: 'createUser',
                     preserveScroll: true,
                     onSuccess: page => {

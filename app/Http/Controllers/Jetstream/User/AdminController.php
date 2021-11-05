@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Jetstream\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
-use App\Http\Requests\UserRequest;
+use App\Http\Requests\AdminRequest;
 use Inertia\Inertia;
 
 
@@ -22,10 +22,10 @@ class AdminController extends Controller
         $page = (int) $request->get('page') > 0 ? (int) $request->get('page') : 1;
         $queries = ['search', 'page'];
         return Inertia::render('Admin/Index', [
-            'users' => User::applyFilters($request->only($queries))
+            'admins' => User::applyFilters($request->only($queries))
                 ->whereRoleIn(['admin', 'super-admin'])
                 ->paginateData($limit),
-            'filtersUsers' => $request->all($queries),
+            'filtersAdmins' => $request->all($queries),
             'start' => $limit * ($page - 1),
         ]);
     }
@@ -37,7 +37,7 @@ class AdminController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Admin/Create');
     }
 
     /**
@@ -46,9 +46,11 @@ class AdminController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AdminRequest $request)
     {
-        //
+        User::createUser($request->validated());
+
+        return redirect()->route('admins.index')->with('success', 'Success');
     }
 
     /**
@@ -68,9 +70,15 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $admin)
     {
-        //
+        if($admin->role == 'admin' || $admin->role == 'super-admin') { 
+            return Inertia::render('Admin/Edit', [
+                'admin' => $admin
+            ]);
+        } else {
+            abort(404);
+        }
     }
 
     /**
@@ -80,9 +88,14 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(AdminRequest $request, User $admin)
     {
-        //
+        if($admin->role == 'admin' || $admin->role == 'super-admin') { 
+            $admin->updateUser($request->validated());
+            return redirect()->route('admins.index')->with('success', 'Success');
+        } else {
+            abort(404);
+        }
     }
 
     /**

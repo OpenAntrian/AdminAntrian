@@ -33631,7 +33631,7 @@ var _hoisted_2 = {
   "class": "bg-gray-800 text-gray-100 flex justify-between md:hidden"
 };
 
-var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Skala Dev");
+var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Open Antrian");
 
 var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
   "class": "mobile-menu-button p-4 focus:outline-none focus:bg-gray-700"
@@ -33656,7 +33656,7 @@ var _hoisted_5 = {
 
 var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "class": "text-2xl font-extrabold"
-}, "Skala Dev", -1
+}, "Open Antrian", -1
 /* HOISTED */
 );
 

@@ -7,7 +7,7 @@
             <!-- mobile menu bar -->
             <div class="bg-gray-800 text-gray-100 flex justify-between md:hidden">
                 <!-- logo -->
-                <Link :href="route('dashboard')" class="block p-4 text-white font-bold" >Skala Dev</Link>
+                <Link :href="route('dashboard')" class="block p-4 text-white font-bold" >Open Antrian</Link>
 
                 <!-- mobile menu button -->
                 <button class="mobile-menu-button p-4 focus:outline-none focus:bg-gray-700">
@@ -23,7 +23,7 @@
                 <!-- logo -->
                 <Link :href="route('dashboard')" class="text-white flex items-center space-x-2 px-4" >
                     <jet-application-mark class="block h-9 w-auto" />
-                    <span class="text-2xl font-extrabold">Skala Dev</span>
+                    <span class="text-2xl font-extrabold">Open Antrian</span>
                 </Link>
 
                 <!-- nav -->

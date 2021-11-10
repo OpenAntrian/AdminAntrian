@@ -63,6 +63,8 @@ class User extends Authenticatable
         'formattedCreatedAt',
         'formattedUpdatedAt',
         'permissions',
+        'isAdmin',
+        'isSuperAdmin',
     ];
 
     public function hasRole($role)
@@ -70,11 +72,31 @@ class User extends Authenticatable
         return $this->role === $role;
     }
 
+    public function getIsAdminAttribute($value)
+    {
+        $permission = ['admin', 'super-admin'];
+        if(in_array($this->role, $permission)) {
+            return true;
+        }
+
+        return false;
+    }
+
+    public function getIsSuperAdminAttribute($value)
+    {
+        $permission = ['super-admin'];
+        if(in_array($this->role, $permission)) {
+            return true;
+        }
+
+        return false;
+    }
+
     public function getFormattedCreatedAtAttribute($value)
     {
         return Carbon::parse($this->created_at)->format('d M Y H:i:s');
     }
-    
+        
     public function getFormattedUpdatedAtAttribute($value)
     {
         return Carbon::parse($this->updated_at)->format('d M Y H:i:s');
@@ -132,14 +154,7 @@ class User extends Authenticatable
         return $query->paginate($limit);
     }
 
-    public static function createUser($request) {
-        // $data = $request->only([
-        //     'name',
-        //     'email',
-        //     'password',
-        //     'role',
-        // ]);
-        
+    public static function createUser($request) {        
         $data = $request;
 
         $data['password'] = Hash::make($data['password']);
@@ -150,12 +165,6 @@ class User extends Authenticatable
     }
 
     public function updateUser($request) {
-        // $data = $request->only([
-        //     'name',
-        //     'email',
-        //     'password',
-        //     'role',
-        // ]);
         $data = $request;
         
         if($data['password']) {

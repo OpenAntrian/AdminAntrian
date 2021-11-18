@@ -72,7 +72,7 @@ class AdminController extends Controller
      */
     public function edit(User $admin)
     {
-        if($admin->role == 'admin' || $admin->role == 'super-admin') { 
+        if($admin->isAdmin) { 
             return Inertia::render('Admin/Edit', [
                 'admin' => $admin
             ]);
@@ -90,7 +90,7 @@ class AdminController extends Controller
      */
     public function update(AdminRequest $request, User $admin)
     {
-        if($admin->role == 'admin' || $admin->role == 'super-admin') { 
+        if($admin->isAdmin) { 
             $admin->updateUser($request->validated());
             return redirect()->route('admins.index')->with('success', 'Success');
         } else {

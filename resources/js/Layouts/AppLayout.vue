@@ -32,7 +32,7 @@
                         Dashboard
                     </jet-nav-link-left>
 
-                    <jet-nav-link-left :href="route('departments.index')" :icons="'far fa-credit-card'" :active="route().current('departments.index')">
+                    <jet-nav-link-left :href="route('departments.index')" :icons="'fas fa-building'" :active="route().current('departments.index')">
                         Departments
                     </jet-nav-link-left>
                 </nav>

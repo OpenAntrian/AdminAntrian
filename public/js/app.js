@@ -33977,7 +33977,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* PROPS */
   , ["href", "active"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_nav_link_left, {
     href: _ctx.route('departments.index'),
-    icons: 'far fa-credit-card',
+    icons: 'fas fa-building',
     active: _ctx.route().current('departments.index')
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {

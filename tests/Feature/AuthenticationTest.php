@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Database\Eloquent\Factories\Sequence;
 use Tests\TestCase;
 
 class AuthenticationTest extends TestCase
@@ -20,7 +21,11 @@ class AuthenticationTest extends TestCase
 
     public function test_users_can_authenticate_using_the_login_screen()
     {
-        $user = User::factory()->create();
+        $user = User::factory()
+                ->state(new Sequence(
+                    fn ($sequence) => ['role' => 'admin'],
+                ))
+                ->create();
 
         $response = $this->post('/login', [
             'email' => $user->email,

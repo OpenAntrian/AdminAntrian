@@ -33651,7 +33651,7 @@ var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 );
 
 var _hoisted_5 = {
-  "class": "sidebar bg-blue-800 text-blue-100 w-64 space-y-6 py-7 absolute inset-y-0 left-0 transform -translate-x-full md:relative md:translate-x-0 transition duration-200 ease-in-out z-50"
+  "class": "sidebar bg-blue-800 text-blue-100 w-64 space-y-6 py-7 absolute inset-y-0 left-0 transform -translate-x-full md:relative md:translate-x-0 transition duration-200 ease-in-out z-50 w-20"
 };
 
 var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
@@ -33916,6 +33916,9 @@ var _hoisted_70 = {
 };
 var _hoisted_71 = {
   "class": "max-w-full mx-auto py-6 px-4 sm:px-6 lg:px-8"
+};
+var _hoisted_72 = {
+  "class": "container mx-auto lg:px-0 md:px-8 sm:px-4"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_Head = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Head");
@@ -34291,7 +34294,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* STABLE_FRAGMENT */
   )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])])], 2
   /* CLASS */
-  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Page Heading "), _ctx.$slots.header ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("header", _hoisted_70, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_71, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.renderSlot)(_ctx.$slots, "header")])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Page Content "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("main", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.renderSlot)(_ctx.$slots, "default")])])])])]);
+  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Page Heading "), _ctx.$slots.header ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("header", _hoisted_70, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_71, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.renderSlot)(_ctx.$slots, "header")])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Page Content "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("main", _hoisted_72, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.renderSlot)(_ctx.$slots, "default")])])])])]);
 }
 
 /***/ }),
@@ -34789,7 +34792,7 @@ var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 );
 
 var _hoisted_10 = {
-  "class": "max-w-full mx-auto py-10 sm:px-6 lg:px-8"
+  "class": "max-w-full mx-auto py-10"
 };
 var _hoisted_11 = {
   "class": "col-span-12 sm:col-span-6"
@@ -35019,7 +35022,7 @@ var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 );
 
 var _hoisted_10 = {
-  "class": "max-w-full mx-auto py-10 sm:px-6 lg:px-8"
+  "class": "max-w-full mx-auto py-10"
 };
 var _hoisted_11 = {
   "class": "col-span-12 sm:col-span-6"
@@ -35245,7 +35248,7 @@ var _hoisted_7 = {
 var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Create member");
 
 var _hoisted_9 = {
-  "class": "max-w-full mx-auto py-7 sm:px-6 lg:px-8"
+  "class": "max-w-full mx-auto py-7"
 };
 var _hoisted_10 = {
   "class": "flex flex-col"
@@ -36440,12 +36443,9 @@ var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 );
 
 var _hoisted_2 = {
-  "class": "py-12"
+  "class": "max-w-full mx-auto py-7"
 };
 var _hoisted_3 = {
-  "class": "max-w-full mx-auto sm:px-6 lg:px-8"
-};
-var _hoisted_4 = {
   "class": "bg-white overflow-hidden shadow-xl sm:rounded-lg"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
@@ -36460,7 +36460,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return [_hoisted_1];
     }),
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_welcome)])])])];
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_welcome)])])];
     }),
     _: 1
     /* STABLE */
@@ -36516,7 +36516,7 @@ var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 );
 
 var _hoisted_10 = {
-  "class": "max-w-full mx-auto py-10 sm:px-6 lg:px-8"
+  "class": "max-w-full mx-auto py-10"
 };
 var _hoisted_11 = {
   "class": "col-span-12 sm:col-span-6"
@@ -36847,7 +36847,7 @@ var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 );
 
 var _hoisted_10 = {
-  "class": "max-w-full mx-auto py-10 sm:px-6 lg:px-8"
+  "class": "max-w-full mx-auto py-10"
 };
 var _hoisted_11 = {
   "class": "col-span-12 sm:col-span-6"
@@ -37174,7 +37174,7 @@ var _hoisted_7 = {
 var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Create department");
 
 var _hoisted_9 = {
-  "class": "max-w-full mx-auto py-7 sm:px-6 lg:px-8"
+  "class": "max-w-full mx-auto py-7"
 };
 var _hoisted_10 = {
   "class": "flex flex-col"
@@ -38608,7 +38608,7 @@ var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 );
 
 var _hoisted_10 = {
-  "class": "max-w-full mx-auto py-10 sm:px-6 lg:px-8"
+  "class": "max-w-full mx-auto py-10"
 };
 var _hoisted_11 = {
   "class": "col-span-12 sm:col-span-6"
@@ -38815,7 +38815,7 @@ var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 );
 
 var _hoisted_10 = {
-  "class": "max-w-full mx-auto py-10 sm:px-6 lg:px-8"
+  "class": "max-w-full mx-auto py-10"
 };
 var _hoisted_11 = {
   "class": "col-span-12 sm:col-span-6"
@@ -39018,7 +39018,7 @@ var _hoisted_7 = {
 var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Create member");
 
 var _hoisted_9 = {
-  "class": "max-w-full mx-auto py-7 sm:px-6 lg:px-8"
+  "class": "max-w-full mx-auto py-7"
 };
 var _hoisted_10 = {
   "class": "flex flex-col"

@@ -18,7 +18,7 @@
             </div>
 
             <!-- sidebar -->
-            <div class="sidebar bg-blue-800 text-blue-100 w-64 space-y-6 py-7 absolute inset-y-0 left-0 transform -translate-x-full md:relative md:translate-x-0 transition duration-200 ease-in-out z-50">
+            <div class="sidebar bg-blue-800 text-blue-100 w-64 space-y-6 py-7 absolute inset-y-0 left-0 transform -translate-x-full md:relative md:translate-x-0 transition duration-200 ease-in-out z-50 w-20">
 
                 <!-- logo -->
                 <Link :href="route('dashboard')" class="text-white flex items-center space-x-2 px-4" >
@@ -258,7 +258,7 @@
                     </header>
 
                     <!-- Page Content -->
-                    <main>
+                    <main class="container mx-auto lg:px-0 md:px-8 sm:px-4">
                         <slot></slot>
                     </main>
                 </div>

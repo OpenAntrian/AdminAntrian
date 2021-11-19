@@ -17,7 +17,7 @@
         </template>
 
         <div>
-            <div class="max-w-full mx-auto py-10 sm:px-6 lg:px-8">
+            <div class="max-w-full mx-auto py-10">
                 <jet-form @submitted="createDepartment">
                         <template #form>
                             <!-- Name -->

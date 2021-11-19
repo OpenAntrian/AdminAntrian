@@ -30184,6 +30184,15 @@ __webpack_require__.r(__webpack_exports__);
       showingNavigationDropdown: false
     };
   },
+  mounted: function mounted() {
+    // grab everything we need
+    var btn = document.querySelector(".mobile-menu-button");
+    var sidebar = document.querySelector(".sidebar"); // add our event listener for the click
+
+    btn.addEventListener("click", function () {
+      sidebar.classList.toggle("-translate-x-full");
+    });
+  },
   methods: {
     switchToTeam: function switchToTeam(team) {
       this.$inertia.put(route('current-team.update'), {
